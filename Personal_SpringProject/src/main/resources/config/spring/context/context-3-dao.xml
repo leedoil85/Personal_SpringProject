@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	
+	<!-- 컨트롤러에서 사용할 수 있는 DAO 객체 생성
+		PersonalMemberDAO personalMemberDAO = new PersonalMemberDAO(); -->
+	<bean id="personalMemberDAO" class="com.myproject.myboard.dao.PersonalMemberDAO">
+		<!--com.myproject.myboard.dao.setSqlSession(sqlSessionBean); -->
+		<property name="sqlSession" ref="sqlSessionBean"></property>
+	</bean>
+	
+	<bean id="personalBoardDAO" class="com.myproject.myboard.dao.PersonalBoardDAO">
+		<property name="sqlSession" ref="sqlSessionBean"></property>
+	</bean>	
+	
+	<!-- 모든 bean들을 하나의 xml에서 해도 되지만... 구분해서 별도로 생성.	(고칠때 찾기 쉬움) -->
+</beans>
