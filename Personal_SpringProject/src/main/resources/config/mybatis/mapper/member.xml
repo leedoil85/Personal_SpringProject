@@ -7,6 +7,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="member_list" resultType="com.myproject.myboard.vo.PersonalMemberVO">
 		select * from personal_member
 	</select>
+	
+	<select id="member_select" parameterType="String" resultType="com.myproject.myboard.vo.PersonalMemberVO">
+		select mem_id from personal_member
+		where
+		mem_id=#{mem_id}
+		 
+	</select>
+	
+	<insert id="member_insert" parameterType="com.myproject.myboard.vo.PersonalMemberVO" useGeneratedKeys="false">
+		insert into personal_member 
+		values(
+		per_mem_seq.nextval,
+		#{mem_id, jdbcType=VARCHAR},
+		#{mem_name, jdbcType=VARCHAR},
+		#{mem_pw, jdbcType=VARCHAR},
+		#{mem_email, jdbcType=VARCHAR},
+		#{mem_add, jdbcType=VARCHAR},
+		#{mem_idnumber, jdbcType=VARCHAR},
+		#{mem_nick, jdbcType=VARCHAR},
+		1
+		)
+	</insert>
 
 </mapper>
 
