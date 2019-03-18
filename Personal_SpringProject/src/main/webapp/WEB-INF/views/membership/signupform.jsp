@@ -13,6 +13,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script> 
 <script src="${pageContext.request.contextPath}/resources/js/Signup.js"></script> 
+<script src="${pageContext.request.contextPath}/resources/js/PNvalidate.js"></script> 
 
 <style type="text/css">
 	body {
@@ -125,8 +126,12 @@
         
         <div class="form-group">
 			<label>주민등록 번호</label>
-            <input type="text" class="form-control" name="mem_idnumber" required="required">
+            <input type="text" class="form-control" name="mem_idnumber" id="mem_idnumber" required="required">
         </div> 
+        
+        <div class="form-group">
+        	<button type="button" class="btn btn-primary btn-sm" onclick="validate();">주민등록번호 확인</button>
+        </div>
         
 		<div class="form-group">
 			<label>비밀번호</label>
