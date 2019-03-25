@@ -12,6 +12,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 <script src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/signIn.js"></script>
 <style type="text/css">
 	body {
 		color: #fff;
@@ -73,20 +74,20 @@
 </head>
 <body>
 <div class="login-form">
-    <form action="/examples/actions/confirmation.php" method="post">
+    <form>
         <h2 class="text-center">Login</h2>   
         <div class="form-group has-error">
-        	<input type="text" class="form-control" name="username" placeholder="Username" required="required">
+        	<input type="text" class="form-control" name="mem_id" placeholder="아이디" required="required">
         </div>
 		<div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+            <input type="password" class="form-control" name="mem_pw" placeholder="비밀번호" required="required">
         </div>        
         <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="send(this.form);">로그인</button>
         </div>
-        <p><a href="#">Lost your Password?</a></p>
+     <!--    <p><a href="#">Lost your Password?</a></p> -->
     </form>
-    <p class="text-center small">Don't have an account? <a href="/myboard/signup.do">Sign up here!</a></p>
+    <p class="text-center small">아이디가 없으신가요? <a href="/myboard/signup.do">회원가입</a></p>
 </div>
 </body>
 </html>                                       		                            

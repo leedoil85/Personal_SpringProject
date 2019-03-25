@@ -8,11 +8,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from personal_member
 	</select>
 	
+	<select id="member_login" parameterType="String" resultType="com.myproject.myboard.vo.PersonalMemberVO">
+		select mem_id,mem_pw 
+		from personal_member 
+		where 
+		mem_id=#{mem_id}
+	</select>
+	
 	<select id="member_select" parameterType="String" resultType="com.myproject.myboard.vo.PersonalMemberVO">
 		select mem_id from personal_member
 		where
 		mem_id=#{mem_id}
-		 
 	</select>
 	
 	<insert id="member_insert" parameterType="com.myproject.myboard.vo.PersonalMemberVO" useGeneratedKeys="false">

@@ -88,23 +88,22 @@
 		<!-- Spring Security -->
 
         <dependency>
-
             <groupId>org.springframework.security</groupId>
-
             <artifactId>spring-security-web</artifactId>
-
-            <version>3.2.3.RELEASE</version>
-
+            <version>4.1.0.RELEASE</version>
+        </dependency>
+        
+        <!--스프링시큐리티 core 라이브러리-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>4.1.0.RELEASE</version>
         </dependency>
 
         <dependency>
-
             <groupId>org.springframework.security</groupId>
-
             <artifactId>spring-security-config</artifactId>
-
-            <version>3.2.3.RELEASE</version>
-
+            <version>4.1.0.RELEASE</version>
         </dependency>	  
 
 		<!-- maven에서 직접 추가한 라이브러리 끝 -->

@@ -148,8 +148,9 @@
 			
 			// [{'member_insert':'s'}]
 			if (json.member_insert == 's') {
-				location.href = "/myboard/login.do"
-				alert("회원등록 성공 로그인페이지로 이동합니다.");
+				location.href = "/myboard/signupSucess.do";
+				//location.href = "/myboard/login.do"
+				//alert("회원등록 성공 로그인페이지로 이동합니다.");
 			} 
 			else {
 				alert("회원 등록 실패");

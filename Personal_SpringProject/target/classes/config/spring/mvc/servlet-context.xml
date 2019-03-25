@@ -22,7 +22,7 @@
 		<beans:constructor-arg ref="dept_dao"/>
 	</beans:bean> -->
 	
-	<beans:bean id="mem_bean" class="com.myproject.myboard.controller.MemberController">
+	<beans:bean id="mem_daobean" class="com.myproject.myboard.controller.MemberController">
 	<!-- 컨트롤러의 참조변수명과 일치시켜야함 -->
 		<beans:constructor-arg ref="personalMemberDAO"/>
 	</beans:bean>
@@ -30,8 +30,6 @@
 	<beans:bean id="board_daobean" class="com.myproject.myboard.controller.BoardController">
 		<beans:constructor-arg ref="personalBoardDAO"/>
 	</beans:bean>
-		
-	
 		
 	
 </beans:beans>

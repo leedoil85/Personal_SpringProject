@@ -42,7 +42,7 @@ function validate() {
 	}*/ // 같은방식으로 앞 번호 계산한것의 합에 뒷번호 계산한것을 모두 더함
 		
 	//alert(lastNum +"!="+ arrNum[12])
-	if ( (11-(tempSum % 11)) % 10 != arrNum[12] ) {
+	if ( (11-(tempSum % 11)) % 10 != arrNum[12] ) {//인덱스는 12까지
 		alert("올바른 주민번호가 아닙니다.");
 		num.value = "";
 		num.focus();
