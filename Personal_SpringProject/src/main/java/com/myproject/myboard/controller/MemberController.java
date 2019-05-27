@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.myproject.myboard.dao.PersonalMemberDAO;
 import com.myproject.myboard.vo.PersonalMemberVO;
@@ -43,6 +44,13 @@ public class MemberController {
 		
 		return "/WEB-INF/views/membership/signupSucess.jsp";
 	}
+	
+	@RequestMapping("/logout.do")
+	public String logOut(SessionStatus session) {
+		session.setComplete();
+		
+		return "/WEB-INF/views/membership/loginform.jsp";
+	}	
 	
 	@RequestMapping("/id_check.do")
 	@ResponseBody
@@ -109,5 +117,8 @@ public class MemberController {
 		
 		return jsonData;
 	}
+	
+	
+	
 	
 }

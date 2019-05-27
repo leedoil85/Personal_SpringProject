@@ -32,13 +32,13 @@ function send(f){
 						//정상이라면 페이지 이동
 						//main 페이지를 보이기 전에 거쳐갈 컨트롤러 서블릿
 						alert("로그인 완료");
-						//location.href = "/quiz/main.korea";//메인 페이지 연결
+						location.href = "../myboard/main.do";//메인 페이지 연결
 					}
 				}
 			}
-			
+			//세션등록 부분 문제생기는중
 			function logout(){
-				location.href="../quiz/logout.korea";
+				location.href="../myboard/logout.do";
 			}
 			
 			function test(){

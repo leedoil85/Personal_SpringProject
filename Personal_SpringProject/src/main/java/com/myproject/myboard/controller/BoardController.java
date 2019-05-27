@@ -23,6 +23,12 @@ public class BoardController {
 		
 		return "/WEB-INF/views/membership/signupform.jsp";
 	}
+	
+	@RequestMapping("/main.do")
+	public String mainPage() {
+		
+		return "/WEB-INF/views/main.jsp";
+	}
 
 	
 }
