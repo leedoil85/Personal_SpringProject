@@ -162,7 +162,7 @@
 				<a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">Service <b class="caret"></b></a>
 				<ul class="dropdown-menu">					
 					<!-- <li><a href="#" class="dropdown-item">Web Design</a></li> -->
-					<li><a href="#" class="dropdown-item">Web developer</a></li>
+					<li><a href="/myboard/management.do" class="dropdown-item">Member Management</a></li>
 					<!-- <li><a href="#" class="dropdown-item">Graphic Design</a></li>
 					<li><a href="#" class="dropdown-item">Digital Marketing</a></li> -->
 				</ul>

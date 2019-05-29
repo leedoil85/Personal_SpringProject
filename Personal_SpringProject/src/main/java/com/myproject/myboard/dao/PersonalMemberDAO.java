@@ -1,13 +1,13 @@
 package com.myproject.myboard.dao;
 
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.myproject.myboard.vo.PersonalMemberVO;
 
 public class PersonalMemberDAO {
-	
-	
 	
 	SqlSession sqlSession;
 
@@ -38,5 +38,14 @@ public class PersonalMemberDAO {
 		
 		return member;
 		
+	}	
+	
+	/*5/27 membership.jsp memberlist 출력 수정요망 아직 오류 확인 못함*/
+	public List<PersonalMemberVO> member_list(){
+		List<PersonalMemberVO> mem_list = null;
+		
+		mem_list = sqlSession.selectList("member.member_list");
+		
+		return mem_list;
 	}
 }

@@ -1,6 +1,7 @@
 package com.myproject.myboard.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,19 @@ public class MemberController {
 		session.setComplete();
 		
 		return "/WEB-INF/views/membership/loginform.jsp";
+	}
+	
+	@RequestMapping("/management.do")
+	public String management(Model model) {
+		//dao객체를 통해 db를 조회하여 리스트 획득
+		List<PersonalMemberVO> list = personalMemberDAO.member_list();
+				
+		model.addAttribute("list",list);
+		
+		return "/WEB-INF/views/membership/management.jsp";
 	}	
+	
+	
 	
 	@RequestMapping("/id_check.do")
 	@ResponseBody
@@ -101,11 +114,12 @@ public class MemberController {
 	@RequestMapping("/member_login.do")
 	@ResponseBody
 	public Map<String,String> mem_login(@RequestParam String mem_id,@RequestParam String mem_pw, Model model){
+		
 		Map<String, String> jsonData = new HashMap<String, String>();
 		PersonalMemberVO member = personalMemberDAO.member_login(mem_id);
 		
 		//getter는 조회된 데이터가 있을때만 
-		//파라메터로 쏴준 값이 세팅 되는게 아님
+		//파라메터로 보내준 값이 세팅 되는게 아닌것같음
 		if (member == null) {//조회된 결과가 없으면
 			jsonData.put("jsonData", "no_id");
 		}else if(  member.getMem_pw().equals(mem_pw.trim()) == false) {

@@ -5,7 +5,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="member">
 
 	<select id="member_list" resultType="com.myproject.myboard.vo.PersonalMemberVO">
-		select * from personal_member
+		select 
+		mem_idx,
+		mem_id,
+		mem_name,
+		mem_email,
+		mem_add,
+		mem_idnumber,
+		mem_nick,
+		mem_per
+		from personal_member
 	</select>
 	
 	<select id="member_login" parameterType="String" resultType="com.myproject.myboard.vo.PersonalMemberVO">

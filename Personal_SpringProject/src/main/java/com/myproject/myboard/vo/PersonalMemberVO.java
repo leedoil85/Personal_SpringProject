@@ -1,6 +1,7 @@
 package com.myproject.myboard.vo;
 
 public class PersonalMemberVO {
+	
 	private int mem_idx;
 	private String mem_id;
 	private String mem_name;
