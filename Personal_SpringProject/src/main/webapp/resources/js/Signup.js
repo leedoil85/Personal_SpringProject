@@ -3,6 +3,39 @@
  */
 	var IDcheck = false; //id 체크 flag
 	
+	//삭제 스크립트 함수 작성중 2019-06-20
+	//td태그id로 지정된 내부 택스트 가져오기( document.getElementById("아이디").innerText)
+	//.value로는 값을 찾을수없어서 undefined로 출력됨
+	function mem_del(f){
+		var mem_id = document.getElementById("mem_id").innerText;
+		if (confirm("삭제하시겠습니까?")== true) {
+			var url = "member_delete.do";
+			var param = "mem_id=" + encodeURIComponent(mem_id);
+			
+			sendRequest(url, param, resultDel, "POST");
+			
+		}
+	}
+	
+	function resultDel(){
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var data = xhr.responseText;
+			var json = JSON.parse(data);
+
+			// [{'reg_check':'yes'}]
+			if (json.jsonData == 'success') {
+				alert("삭제완료되었습니다.");
+				location.href = "/myboard/management.do"
+				
+			} else if (json.jsonData == 'fail') 
+			{
+				alert("삭제실패!");
+				location.href = "/myboard/management.do"
+			}
+
+		}
+	}
+	
 	function back() {
 		if (confirm("이전페이지로 이동하시겠습니까?") == false) {
 			return;

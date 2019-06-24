@@ -145,7 +145,7 @@
 <body>
 <nav class="navbar navbar-default navbar-expand-xl navbar-primary">
 	<div class="navbar-header d-flex col">
-		<a class="navbar-brand" href="#"><i class="fa fa-cube"></i>Personal<b>Board</b></a>  		
+		<a class="navbar-brand" href="/myboard/main.do"><i class="fa fa-cube"></i>Personal<b>Board</b></a>  		
 		<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle navbar-toggler ml-auto">
 			<span class="navbar-toggler-icon"></span>
 			<span class="icon-bar"></span>

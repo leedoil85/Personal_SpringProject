@@ -4,6 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 
+
 	<select id="member_list" resultType="com.myproject.myboard.vo.PersonalMemberVO">
 		select 
 		mem_idx,
@@ -14,9 +15,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		mem_idnumber,
 		mem_nick,
 		mem_per
-		from personal_member
+		from personal_member order by mem_idx asc
 	</select>
 	
+
 	<select id="member_login" parameterType="String" resultType="com.myproject.myboard.vo.PersonalMemberVO">
 		select mem_id,mem_pw 
 		from personal_member 
@@ -29,6 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where
 		mem_id=#{mem_id}
 	</select>
+	
 	
 	<insert id="member_insert" parameterType="com.myproject.myboard.vo.PersonalMemberVO" useGeneratedKeys="false">
 		insert into personal_member 
@@ -44,6 +47,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		1
 		)
 	</insert>
+	
+	<delete id="member_delete" parameterType="String">
+	delete from personal_member
+	where mem_id=#{mem_id}
+	</delete>
 
 </mapper>
 

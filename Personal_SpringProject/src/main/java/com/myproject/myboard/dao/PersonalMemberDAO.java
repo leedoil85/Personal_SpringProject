@@ -48,4 +48,11 @@ public class PersonalMemberDAO {
 		
 		return mem_list;
 	}
+
+	public int mem_delete(String mem_id) {
+		int res = 0;
+
+		res = sqlSession.delete("member.member_delete", mem_id);
+		return res;
+	}
 }

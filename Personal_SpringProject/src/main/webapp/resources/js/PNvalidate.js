@@ -39,7 +39,7 @@ function validate() {
 		} else {
 			tempSum += arrNum2[i] * (8 + i);
 		}
-	}*/ // 같은방식으로 앞 번호 계산한것의 합에 뒷번호 계산한것을 모두 더함
+	}*/ // 같은방식으로 앞 번호 계산한것의 합에 뒷번호 계산한것을 모두 누적
 		
 	//alert(lastNum +"!="+ arrNum[12])
 	if ( (11-(tempSum % 11)) % 10 != arrNum[12] ) {//인덱스는 12까지

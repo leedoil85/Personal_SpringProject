@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,9 +12,11 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/Signup.js"></script>
 <style type="text/css">
     body {
         color: #566787;
@@ -138,8 +141,10 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<jsp:include page="../main.jsp"/>
-    <div class="container">
+  <form>
+	<jsp:include page="../main.jsp" flush="false"/>
+	
+    <div class="container-fluid">
         <div class="table-wrapper">			
             <div class="table-title">
                 <div class="row">
@@ -169,21 +174,30 @@ $(document).ready(function(){
                     </tr>
                 </thead>
                 <!--1. 개인정보중 민감한 주민등록번호 '*'로 replace
-                	2. 멤버가 삭제될경우 idx가 뒤죽박죽 될 수도 있으므로 오름차순으로 정렬
-                	3. 멤버가 많아질경우 페이지가 넘어갈수 있으므로 페이징 처리 * -->
+                	2. 멤버가 삭제될경우 idx가 뒤죽박죽 될 수도 있으므로 오름차순으로 정렬                	
+                	3. 멤버가 많아질경우 페이지가 넘어갈수 있으므로 페이징 처리 * 
+                	진행: 
+                	1>결과값을 가지고 문자열을 jstl함수 fn:substring으로 잘라내어 7번째자리 까지 숫자를 출력하고 뒷자리는 직접 표시 하지않고'*'로 직접출력
+                	2>쿼리로 오름차순 정렬함 
+                	select 
+                	mem_idx,mem_id,mem_email,mem_add,mem_nick,mem_idnumber 
+                	where personal_member 
+                	order by asc 
+                	-->
                 <tbody>
+              
                 <c:forEach var="vo" items="${list}">
                     <tr>
                         <td>${vo.mem_idx}</td>
-                        <td>${vo.mem_id}</td>
+                        <td id="mem_id">${vo.mem_id}</td>
                         <td>${vo.mem_name}</td>
                         <td>${vo.mem_email}</td>
                         <td>${vo.mem_add}</td>
                         <td>${vo.mem_nick}</td>
-                        <td>${vo.mem_idnumber}</td>
+                        <td>${fn:substring(vo.mem_idnumber,0,fn:length(vo.mem_idnumber)-7 )}-${fn:substring(vo.mem_idnumber,6,7) }****** </td>
                         <td>
                             <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                            <a href="#" class="delete" title="Delete" data-toggle="tooltip" onclick='mem_del(this.form); return false'><i class="material-icons">&#xE872;</i></a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -191,5 +205,6 @@ $(document).ready(function(){
             </table>
         </div>
     </div>     
+ </form>
 </body>
 </html>                                		                                                        
