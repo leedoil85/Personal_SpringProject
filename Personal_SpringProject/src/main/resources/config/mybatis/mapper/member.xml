@@ -52,6 +52,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	delete from personal_member
 	where mem_id=#{mem_id}
 	</delete>
+	
+	<select id="mem_list" resultType="com.myproject.myboard.vo.PersonalMemberVO" parameterType="com.myproject.myboard.util.Pagination">
+		<![CDATA[
+		select 
+		#{mem_idx, jdbcType=INTEGER},
+		#{mem_id, jdbcType=VARCHAR},
+		#{mem_name, jdbcType=VARCHAR},
+		#{mem_email, jdbcType=VARCHAR},
+		#{mem_add, jdbcType=VARCHAR},
+		#{mem_idnumber, jdbcType=VARCHAR},
+		#{mem_nick, jdbcType=VARCHAR},
+		#{mem_per, jdbcType=VARCHAR}
+		from personal_member
+		where mem_idx > 0
+		order by mem_idx desc, regdata desc
+		limit #{page, jdbcType=INTEGER}, #{perPageNum, jdbcType=INTEGER} 
+		]]>
+	</select>
 
 </mapper>
 

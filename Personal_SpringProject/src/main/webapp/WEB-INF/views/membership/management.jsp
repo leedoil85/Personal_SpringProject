@@ -175,10 +175,10 @@ $(document).ready(function(){
                 </thead>
                 <!--1. 개인정보중 민감한 주민등록번호 '*'로 replace
                 	2. 멤버가 삭제될경우 idx가 뒤죽박죽 될 수도 있으므로 오름차순으로 정렬                	
-                	3. 멤버가 많아질경우 페이지가 넘어갈수 있으므로 페이징 처리 * 
+                	3. 멤버가 많아질경우 스크롤이 길어질수있으므로 페이징 처리 * 
                 	진행: 
                 	1>결과값을 가지고 문자열을 jstl함수 fn:substring으로 잘라내어 7번째자리 까지 숫자를 출력하고 뒷자리는 직접 표시 하지않고'*'로 직접출력
-                	2>쿼리로 오름차순 정렬함 
+                	2>오름차순 정렬
                 	select 
                 	mem_idx,mem_id,mem_email,mem_add,mem_nick,mem_idnumber 
                 	where personal_member 
@@ -203,6 +203,28 @@ $(document).ready(function(){
                 </c:forEach>
                 </tbody>
             </table>
+            <!-- 훔.... 모르겠다... -->
+            <div>
+            	<ul class="pagination pagination-sm no-margin pull-right">
+            		<li>
+	            		<c:if test="${pageMaker.prev == true}" >
+	            			<a href="/myboard/management.do?page=${pageMaker.startPage -1}&perPageNum=${pageMaker.pag.perPageNum}"></a>
+	            		</c:if>
+            		</li>
+            		
+            		<li>
+            			<c:forEach items="">
+            			</c:forEach>
+            		</li>
+            		
+            		<li>
+            			<c:if test="${pageMaker.next eq true and ${pageMaker.endPage > 0 }">
+            				<a href="/myboard/management.do?page=${pageMaker.endPage + 1 }&prePageNum=${pageMaker.pag.perPageNum}"></a>
+            			</c:if>
+            		</li>
+            		
+            	</ul>
+            </div>
         </div>
     </div>     
  </form>

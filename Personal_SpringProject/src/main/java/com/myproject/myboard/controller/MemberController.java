@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.myproject.myboard.dao.PersonalMemberDAO;
+import com.myproject.myboard.util.PageMaker;
+import com.myproject.myboard.util.Pagination;
 import com.myproject.myboard.vo.PersonalMemberVO;
 
 @Controller
@@ -54,12 +56,21 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/management.do")
-	public String management(Model model) {
+	public String management(@ModelAttribute("pag") Pagination pag, Model model) {
 		//dao객체를 통해 db를 조회하여 리스트 획득
-		List<PersonalMemberVO> list = personalMemberDAO.member_list();
-				
-		model.addAttribute("list",list);
+		System.out.println("--멤버 리스트 조회 시작--");
+		System.out.println(pag.toString());
 		
+		List<PersonalMemberVO> list = personalMemberDAO.member_list();
+		
+		model.addAttribute("list",list);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setPag(pag);
+		pageMaker.setTotalCount(personalMemberDAO.page_count(pag));
+		
+		model.addAttribute("pageMaker",pageMaker);
+
+		System.out.println("--멤버 리스트 조회 종료--");
 		return "/WEB-INF/views/membership/management.jsp";
 	}	
 	
@@ -68,6 +79,7 @@ public class MemberController {
 	@RequestMapping("/id_check.do")
 	@ResponseBody
 	public Map<String, String> id_check(@RequestParam String mem_id) {
+		System.out.println("--회원가입 아이디 체크 시작--");
 		PersonalMemberVO member = null;
 		Map<String,String> map = null;
 		try {
@@ -80,11 +92,14 @@ public class MemberController {
 			
 			if (member == null) {
 				map.put("id_check", "yes" );
+				System.out.println(map);
 			}else{
 				map.put("id_check", "no");
+				System.out.println(map);
 			}
 		}
 		
+		System.out.println("--회원가입 아이디 체크 종료--");
 		return map;
 	}
 	
@@ -129,8 +144,8 @@ public class MemberController {
 			System.out.printf("아이디 %s 비밀번호 불일치\n",mem_id);
 		}else {
 			jsonData.put("jsonData","clear");
-			System.out.printf("아이디 %s 로그인 성공\n",mem_id);
 			model.addAttribute("mem_id", member.getMem_id());
+			System.out.printf("아이디 %s 로그인 성공\n아이디 세션에 등록",mem_id);
 		}
 		System.out.println("--로그인 종료--");
 		return jsonData;
@@ -151,7 +166,6 @@ public class MemberController {
 			System.out.println("삭제실패");
 			jsonData.put("jsonData", "fail");
 		}
-		
 		System.out.println("--회원 삭제 종료--");
 		return jsonData;
 	}

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.myproject.myboard.util.Pagination;
 import com.myproject.myboard.vo.PersonalMemberVO;
 
 public class PersonalMemberDAO {
@@ -40,13 +41,19 @@ public class PersonalMemberDAO {
 		
 	}	
 	
-	/*5/27 membership.jsp memberlist 출력 수정요망 아직 오류 확인 못함*/
 	public List<PersonalMemberVO> member_list(){
 		List<PersonalMemberVO> mem_list = null;
 		
 		mem_list = sqlSession.selectList("member.member_list");
 		
 		return mem_list;
+	}
+	
+	// 7/1 페이징 코드 작성중 컨트롤러까지 작성
+	public int page_count(Pagination pag){
+		int page_count =  sqlSession.selectOne("member.mem_list");
+		
+		return page_count;
 	}
 
 	public int mem_delete(String mem_id) {
